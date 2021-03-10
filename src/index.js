@@ -17,21 +17,26 @@ const switcher = document.querySelector('.theme-switch__toggle');
 switcher.addEventListener('change', swithTheme);
 checkTheme();
 
+function themeReplace(oldTheme, newTheme) {
+  document.body.classList.replace(oldTheme, newTheme);
+  localStorage.setItem('theme', newTheme);
+}
+
 function swithTheme() {
   if (this.checked) {
-    document.body.classList.remove(Theme.LIGHT);
-    document.body.classList.add(Theme.DARK);
-    localStorage.setItem('theme', 'dark-theme');
+    themeReplace(Theme.LIGHT, Theme.DARK);
   } else {
-    document.body.classList.remove(Theme.DARK);
-    document.body.classList.add(Theme.LIGHT);
-    localStorage.setItem('theme', 'light-theme');
+    themeReplace(Theme.DARK, Theme.LIGHT);
   }
 }
 
 function checkTheme() {
+  if (localStorage.getItem('theme') === null) {
+    document.body.classList.add(Theme.LIGHT);
+  }
   document.body.classList.add(localStorage.getItem('theme'));
-  if (localStorage.getItem('theme') === 'dark-theme') {
+
+  if (localStorage.getItem('theme') === Theme.DARK) {
     switcher.checked = true;
   }
 }
