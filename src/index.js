@@ -33,9 +33,9 @@ function swithTheme() {
 function checkTheme() {
   if (localStorage.getItem('theme') === null) {
     document.body.classList.add(Theme.LIGHT);
+  } else {
+    document.body.classList.add(localStorage.getItem('theme'));
   }
-  document.body.classList.add(localStorage.getItem('theme'));
-
   if (localStorage.getItem('theme') === Theme.DARK) {
     switcher.checked = true;
   }
