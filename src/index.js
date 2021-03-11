@@ -31,12 +31,9 @@ function swithTheme() {
 }
 
 function checkTheme() {
-  if (localStorage.getItem('theme') === null) {
-    document.body.classList.add(Theme.LIGHT);
-  } else {
-    document.body.classList.add(localStorage.getItem('theme'));
-  }
   if (localStorage.getItem('theme') === Theme.DARK) {
+    document.body.classList.add(Theme.DARK);
     switcher.checked = true;
-  }
-}
+  } else {
+    document.body.classList.add(Theme.LIGHT);
+}}
